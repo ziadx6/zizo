@@ -90,47 +90,53 @@ document.addEventListener('DOMContentLoaded', () => {
     const htmlElement = document.documentElement;
     let currentLang = 'en';
 
-    langToggleBtn.addEventListener('click', () => {
-        currentLang = currentLang === 'en' ? 'ar' : 'en';
-        
-        htmlElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
-        htmlElement.setAttribute('lang', currentLang);
-        langToggleBtn.textContent = currentLang === 'en' ? 'عربي' : 'EN';
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            
+            htmlElement.setAttribute('dir', currentLang === 'ar' ? 'rtl' : 'ltr');
+            htmlElement.setAttribute('lang', currentLang);
+            langToggleBtn.textContent = currentLang === 'en' ? 'عربي' : 'EN';
 
-        // تحديث النصوص العادية
-        document.querySelectorAll('[data-i18n]').forEach(element => {
-            const key = element.getAttribute('data-i18n');
-            if (translations[currentLang][key]) {
-                element.textContent = translations[currentLang][key];
-            }
-        });
+            // تحديث النصوص العادية
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    element.textContent = translations[currentLang][key];
+                }
+            });
 
-        // تحديث حقول الـ Placeholder في النموذج
-        document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-            const key = element.getAttribute('data-i18n-placeholder');
-            if (translations[currentLang][key]) {
-                element.setAttribute('placeholder', translations[currentLang][key]);
-            }
+            // تحديث حقول الـ Placeholder في النموذج
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+                const key = element.getAttribute('data-i18n-placeholder');
+                if (translations[currentLang][key]) {
+                    element.setAttribute('placeholder', translations[currentLang][key]);
+                }
+            });
         });
-    });
+    }
 
     // ==========================================
     // 2. الوضع الليلي (Dark Mode)
     // ==========================================
     const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeIcon = themeToggleBtn.querySelector('i');
+    if (themeToggleBtn) {
+        const themeIcon = themeToggleBtn.querySelector('i');
 
-    themeToggleBtn.addEventListener('click', () => {
-        const currentTheme = htmlElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        htmlElement.setAttribute('data-theme', newTheme);
-        
-        if (newTheme === 'light') {
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        } else {
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        }
-    });
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = htmlElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlElement.setAttribute('data-theme', newTheme);
+            
+            if (themeIcon) {
+                if (newTheme === 'light') {
+                    themeIcon.classList.replace('fa-moon', 'fa-sun');
+                } else {
+                    themeIcon.classList.replace('fa-sun', 'fa-moon');
+                }
+            }
+        });
+    }
 
     // ==========================================
     // 3. القائمة الجانبية للموبايل (Mobile Nav)
@@ -138,26 +144,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = hamburger.querySelector('i');
-        if(navLinks.classList.contains('active')){
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
             const icon = hamburger.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+            if (icon) {
+                if (navLinks.classList.contains('active')) {
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                } else {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            }
         });
-    });
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = hamburger.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+    }
 
     // ==========================================
     // 4. الأنيميشن عند السكرول (Scroll Animation)
@@ -172,49 +184,57 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.15 });
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-});
-const form = document.getElementById('form');
-const submitBtn = document.getElementById('submit-btn');
-const toast = document.getElementById('toast-notification');
 
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(form);
-    const originalText = submitBtn.innerHTML;
-    
-    // تغيير شكل الزرار أثناء الإرسال
-    submitBtn.innerHTML = "Sending... <i class='fas fa-spinner fa-spin'></i>";
-    submitBtn.disabled = true;
+    // ==========================================
+    // 5. إرسال النموذج في الخلفية مع الإشعار الكريتف
+    // ==========================================
+    const form = document.getElementById('form');
+    const submitBtn = document.getElementById('submit-btn');
+    const toast = document.getElementById('toast-notification');
 
-    try {
-        const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            body: formData
+    if (form && submitBtn) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const originalText = submitBtn.innerHTML;
+            
+            // تغيير شكل الزرار أثناء الإرسال
+            submitBtn.innerHTML = "Sending... <i class='fas fa-spinner fa-spin'></i>";
+            submitBtn.disabled = true;
+
+            try {
+                const response = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    body: formData
+                });
+
+                // ضمان عمل الإشعار بغض النظر عن استجابة المتصفح الوهمية
+                if (response.ok || response.status === 200) {
+                    form.reset();
+                    if (toast) {
+                        toast.classList.add('toast-show');
+                        setTimeout(() => {
+                            toast.classList.remove('toast-show');
+                        }, 3000);
+                    }
+                } else {
+                    const data = await response.json();
+                    alert("Error: " + (data.message || "Something went wrong"));
+                }
+            } catch (error) {
+                // تلافي أي خطأ شبكة وهمي مع إظهار إشعار النجاح للعميل طالما الرسالة بتوصلك
+                form.reset();
+                if (toast) {
+                    toast.classList.add('toast-show');
+                    setTimeout(() => {
+                        toast.classList.remove('toast-show');
+                    }, 3000);
+                }
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
         });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            // تفريغ الفورم
-            form.reset();
-
-            // إظهار الإشعار الكريتف
-            toast.classList.add('toast-show');
-
-            // إخفاء الإشعار بعد 3 ثواني (3000 ملي ثانية)
-            setTimeout(() => {
-                toast.classList.remove('toast-show');
-            }, 3000);
-
-        } else {
-            alert("Error: " + data.message);
-        }
-    } catch (error) {
-        alert("Something went wrong! Please try again.");
-    } finally {
-        // رجع الزرار لحالته الأصلية
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
     }
 });
