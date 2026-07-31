@@ -209,18 +209,23 @@
                     </a>
                 </div>
                 <div class="contact-form-container">
-                    <form class="contact-form" onsubmit="event.preventDefault();">
-                        <div class="form-row">
-                            <input type="text" data-i18n-placeholder="form_name" placeholder="Your Name" required>
-                            <input type="email" data-i18n-placeholder="form_email" placeholder="Your Email" required>
-                        </div>
-                        <input type="text" data-i18n-placeholder="form_subject" placeholder="Subject" required>
-                        <textarea data-i18n-placeholder="form_msg" placeholder="Your Message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary submit-btn">
-                            <span data-i18n="form_btn">Send Message</span> <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
+    <form id="form" class="contact-form">
+        
+        <!-- مفتاح الوصول الخاص بك -->
+        <input type="hidden" name="access_key" value="174edbd8-27af-45dc-af18-a2c8a7727f4a">
+
+        <div class="form-row">
+            <input type="text" name="name" data-i18n-placeholder="form_name" placeholder="Your Name" required>
+            <input type="email" name="email" data-i18n-placeholder="form_email" placeholder="Your Email" required>
+        </div>
+        <input type="text" name="subject" data-i18n-placeholder="form_subject" placeholder="Subject" required>
+        <textarea name="message" data-i18n-placeholder="form_msg" placeholder="Your Message" rows="5" required></textarea>
+        
+        <button type="submit" id="submit-btn" class="btn btn-primary submit-btn">
+            <span data-i18n="form_btn">Send Message</span> <i class="fas fa-paper-plane"></i>
+        </button>
+    </form>
+</div>
             </div>
         </section>
     </main>
@@ -228,7 +233,7 @@
     <!-- Footer -->
     <footer>
         <div class="container footer-content">
-            <p data-i18n="footer_copy">&copy; Copyright © ZI. All Rights Reserved.</p>
+            <p data-i18n="footer_copy">&copy; Copyright © ZIZO. All Rights Reserved.</p>
             <a href="#home" class="back-to-top-circle" aria-label="Back to Top">
                 <i class="fas fa-chevron-up"></i>
             </a>
@@ -240,3 +245,8 @@
     <script src="js/script.js"></script>
 </body>
 </html>
+<!-- عنصر الإشعار العصري -->
+<div id="toast-notification" class="toast-hidden">
+    <i class="fas fa-check-circle"></i>
+    <span>تم ارسال رسالتك بنجاح! شكراً لتواصلك معنا.</span>
+</div>

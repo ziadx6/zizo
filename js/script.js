@@ -173,3 +173,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
 });
+const form = document.getElementById('form');
+const submitBtn = document.getElementById('submit-btn');
+const toast = document.getElementById('toast-notification');
+
+form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    const originalText = submitBtn.innerHTML;
+    
+    // تغيير شكل الزرار أثناء الإرسال
+    submitBtn.innerHTML = "Sending... <i class='fas fa-spinner fa-spin'></i>";
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // تفريغ الفورم
+            form.reset();
+
+            // إظهار الإشعار الكريتف
+            toast.classList.add('toast-show');
+
+            // إخفاء الإشعار بعد 3 ثواني (3000 ملي ثانية)
+            setTimeout(() => {
+                toast.classList.remove('toast-show');
+            }, 3000);
+
+        } else {
+            alert("Error: " + data.message);
+        }
+    } catch (error) {
+        alert("Something went wrong! Please try again.");
+    } finally {
+        // رجع الزرار لحالته الأصلية
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+});
