@@ -1,0 +1,34 @@
+[
+  {
+    "id": "siemens",
+    "image": "siemens",
+    "features": ["excel", "word", "powerpoint", "businessAnalysis", "businessSimulation"],
+    "tech": ["Excel", "Word", "PowerPoint"],
+    "files": [
+      { "name": "Siemens Business Project - Excel", "path": "assets/projects/siemens.xls", "icon": "fa-file-excel" },
+      { "name": "Siemens Business Project - Word", "path": "assets/projects/siemens.doc", "icon": "fa-file-word" },
+      { "name": "Siemens Business Project - PowerPoint", "path": "assets/projects/siemens.ppt", "icon": "fa-file-powerpoint" }
+    ]
+  },
+  {
+    "id": "bakery",
+    "image": "bakery",
+    "features": ["customerManagement", "salesManagement", "ordersManagement", "reports"],
+    "tech": ["C++", "Python", "SQL"],
+    "url": "#"
+  },
+  {
+    "id": "portfolio",
+    "image": "portfolio",
+    "features": [],
+    "tech": ["HTML", "CSS", "JavaScript"],
+    "url": "#"
+  },
+  {
+    "id": "cs50",
+    "image": "cs50x",
+    "features": [],
+    "tech": ["C", "Python", "JavaScript"],
+    "url": "#"
+  }
+]

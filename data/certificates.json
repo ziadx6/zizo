@@ -1,0 +1,27 @@
+[
+  {
+    "id": "cs50",
+    "category": "programming",
+    "image": "cs50"
+  },
+  {
+    "id": "fundamentals",
+    "category": "programming",
+    "image": "fundamentals"
+  },
+  {
+    "id": "genai",
+    "category": "ai",
+    "image": "genai"
+  },
+  {
+    "id": "excelIntro",
+    "category": "microsoft",
+    "image": "excel-intro"
+  },
+  {
+    "id": "excelAdvanced",
+    "category": "microsoft",
+    "image": "excel-advanced"
+  }
+]

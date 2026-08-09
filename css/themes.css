@@ -1,0 +1,67 @@
+/* ============ THEMES ============ */
+/* Dark mode is the default theme via :root in style.css */
+
+/* RTL adjustments via [dir] attribute set on <html> by language.js */
+[dir="rtl"] body {
+  font-family: 'Cairo', 'Tajawal', var(--font-sans);
+}
+
+[dir="rtl"] .hero-name,
+[dir="rtl"] .page-title,
+[dir="rtl"] .section-head h2,
+[dir="rtl"] .intro-brand,
+[dir="rtl"] .loading-brand,
+[dir="rtl"] .nav-logo,
+[dir="rtl"] .footer-brand .logo,
+[dir="rtl"] .stat-number,
+[dir="rtl"] .tl-year {
+  font-family: 'Cairo', 'Tajawal', var(--font-display);
+}
+
+[dir="rtl"] .nav-links { flex-direction: row; }
+
+/* Focus states for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* High contrast text helpers */
+.text-gradient {
+  background: linear-gradient(135deg, var(--purple-bright), var(--blue-bright));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+}
+
+/* Neon text glow */
+.neon-text {
+  text-shadow: 0 0 12px var(--purple-glow), 0 0 24px var(--purple-glow);
+}
+
+/* Neon box glow */
+.neon-box {
+  box-shadow: 0 0 20px var(--purple-glow);
+}
+
+/* RTL icon mirroring where needed */
+[dir="rtl"] .nav-links a::after { left: 50%; right: auto; }
+
+/* Print friendliness */
+@media print {
+  .navbar, .footer, .intro-screen, .loading-screen, .nav-toggle { display: none !important; }
+  body { background: #fff; color: #000; }
+  body::before, body::after { display: none; }
+}
