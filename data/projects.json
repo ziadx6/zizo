@@ -15,20 +15,20 @@
     "image": "bakery",
     "features": ["customerManagement", "salesManagement", "ordersManagement", "reports"],
     "tech": ["C++", "Python", "SQL"],
-    "url": "#"
+    "url": "https://ziad9.pythonanywhere.com/login"
   },
   {
     "id": "portfolio",
     "image": "portfolio",
     "features": [],
     "tech": ["HTML", "CSS", "JavaScript"],
-    "url": "#"
+    "url": "https://ziadx6.github.io/zizo/"
   },
   {
     "id": "cs50",
     "image": "cs50x",
     "features": [],
     "tech": ["C", "Python", "JavaScript"],
-    "url": "#"
+    "url": "https://github.com/ziadx6/Harvard-CS50-Tasks.git"
   }
 ]

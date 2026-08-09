@@ -638,7 +638,7 @@ main { padding-top: var(--header-h); }
 }
 .about-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--space-3);
 }
 .about-card {
@@ -669,7 +669,7 @@ main { padding-top: var(--header-h); }
 /* ============ PROJECTS ============ */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: var(--space-3);
 }
 .project-card {
@@ -830,7 +830,7 @@ main { padding-top: var(--header-h); }
 }
 .cert-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
   gap: var(--space-3);
 }
 .cert-card {
@@ -1066,7 +1066,7 @@ main { padding-top: var(--header-h); }
 /* ============ MORE ============ */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: var(--space-3);
   margin-bottom: var(--space-6);
 }
