@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Cairo:wght@400;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
@@ -54,7 +54,7 @@
 
   <!-- Navbar -->
   <nav class="navbar">
-    <div class="nav-inner">
+    <div class="nav-inner container">
       <a href="index.html" class="nav-logo">ZIZO</a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -76,7 +76,7 @@
   <main>
     <!-- Hero -->
     <section class="hero page-fade">
-      <div class="hero-inner">
+      <div class="hero-inner container">
         <div class="hero-text">
           <span class="hero-greeting"><i class="fa-solid fa-hand-sparkles"></i> <span data-i18n="home.name">Ziad
               Khaled</span></span>
@@ -90,16 +90,16 @@
         <div class="hero-visual">
           <div class="hero-orb one"></div>
           <div class="hero-orb two"></div>
-          <div class="hero-profile square-effect">
+          <div class="hero-profile">
             <div class="rotating-border"></div>
-            <img src="assets/profile/profile.jpg" alt="hero">
+            <img src="assets/profile/profile.jpg" alt="Ziad Khaled" onerror="this.onerror=null; this.src='assets/profile/killua.jpg';">
           </div>
         </div>
       </div>
     </section>
 
     <!-- Stats -->
-    <section class="stats">
+    <section class="stats container">
       <div class="stat-card reveal">
         <div class="stat-number" data-count="5">0</div>
         <div class="stat-label" data-i18n="stats.certificates">Certificates</div>
@@ -115,7 +115,7 @@
     </section>
 
     <!-- Latest Certificates -->
-    <section class="section">
+    <section class="section container">
       <div class="section-head reveal">
         <h2 data-i18n="home.latestCerts">Latest Certificates</h2>
         <a href="certificates.html" class="view-all"><span data-i18n="home.viewAll">View All</span> <i
@@ -125,7 +125,7 @@
     </section>
 
     <!-- Latest Projects -->
-    <section class="section">
+    <section class="section container">
       <div class="section-head reveal">
         <h2 data-i18n="home.latestProjects">Latest Projects</h2>
         <a href="projects.html" class="view-all"><span data-i18n="home.viewAll">View All</span> <i
@@ -137,7 +137,7 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner container">
       <div class="footer-brand">
         <div class="logo">ZIZO</div>
         <p data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</p>
@@ -169,7 +169,7 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom container">
       <span data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</span> &copy; <span id="year"></span>
       - <span data-i18n="footer.rights">All Rights Reserved</span>
     </div>
@@ -193,96 +193,52 @@
 
     // Intro flow
     (async function () {
-      await loadTranslations();
+      if (typeof loadTranslations === 'function') {
+        await loadTranslations();
+      }
       const params = new URLSearchParams(window.location.search);
       const forceIntro = params.get('intro') === '1';
       const screen = document.getElementById('introScreen');
-      const shouldShow = forceIntro || !Storage.hasSeenIntro();
+      const shouldShow = screen && (forceIntro || !Storage.hasSeenIntro());
 
       const launchIntro = () => {
+        if (!screen) return;
         screen.classList.remove('hidden');
         document.body.classList.add('no-scroll');
-        initIntroParticles();
-        startTyped(document.getElementById('introTyped'), 'intro.typed', { speed: 70, pause: 1200 });
+        if (typeof initIntroParticles === 'function') initIntroParticles();
+        if (typeof startTyped === 'function') {
+          startTyped(document.getElementById('introTyped'), 'intro.typed', { speed: 70, pause: 1200 });
+        }
         const enter = document.getElementById('enterBtn');
-        enter.onclick = () => {
-          screen.classList.add('hidden');
-          document.body.classList.remove('no-scroll');
-          Storage.markIntroSeen();
-          setTimeout(() => screen.remove(), 700);
-        };
+        if (enter) {
+          enter.onclick = () => {
+            screen.classList.add('hidden');
+            document.body.classList.remove('no-scroll');
+            Storage.markIntroSeen();
+            setTimeout(() => screen.remove(), 700);
+          };
+        }
       };
 
       const launchHome = () => {
-        screen.remove();
-        startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
-        // render latest certs (3) and projects (2)
-        renderLatest();
+        if (screen) screen.remove();
+        if (typeof startTyped === 'function') {
+          startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
+        }
       };
 
-      // Wait for loading screen to finish before showing intro
+      // Wait for loading screen
       setTimeout(() => {
         if (shouldShow) launchIntro();
         else launchHome();
       }, 1800);
 
       document.addEventListener('lang:changed', () => {
-        if (document.getElementById('homeTyped')) {
+        if (document.getElementById('homeTyped') && typeof startTyped === 'function') {
           startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
         }
-        renderLatest();
       });
     })();
-
-    async function renderLatest() {
-      await loadTranslations();
-      await loadData();
-      const certs = (CertsData || []).slice(0, 3);
-      const projs = (ProjectsData || []).slice(0, 2);
-      const certGrid = document.getElementById('latestCerts');
-      const projGrid = document.getElementById('latestProjects');
-
-      const lang = Storage.getLang();
-      certGrid.innerHTML = certs.map(c => {
-        const title = getTranslated(`certificates.items.${c.id}.title`);
-        const issuer = getTranslated(`certificates.items.${c.id}.issuer`);
-        const cat = getTranslated(`certificates.${c.category}`);
-        const dl = getTranslated('certificates.download');
-        return `<article class="cert-card glass-card reveal">
-          <div class="cert-img"><i class="fa-solid fa-certificate"></i><span class="cat-badge">${cat}</span></div>
-          <div class="cert-body"><h3>${title}</h3><span class="cert-issuer">${issuer}</span>
-          <button class="cert-download" onclick="downloadCert('${c.id}')"><i class="fa-solid fa-download"></i> ${dl}</button></div></article>`;
-      }).join('');
-
-      projGrid.innerHTML = projs.map(p => {
-        const title = getTranslated(`projects.items.${p.id}.title`);
-        const desc = getTranslated(`projects.items.${p.id}.desc`);
-        const vd = getTranslated('projects.viewDetails');
-        const tech = (p.tech || []).map(tk => `<span>${tk}</span>`).join('');
-
-        let filesBlock = '';
-        let filesHtml = '';
-        if (p.files && p.files.length > 0) {
-          filesHtml += p.files.map(f => `<a href="${f.path}" download class="project-file" title="${f.name}"><i class="fa-solid ${f.icon}"></i> <span>${f.name.split(' - ').pop()}</span></a>`).join('');
-        }
-        if (p.url) {
-          const visitText = lang === 'ar' ? 'الموقع' : 'Website';
-          filesHtml += `<a href="${p.url}" target="_blank" rel="noopener" class="project-file" title="Visit Website"><i class="fa-solid fa-globe"></i> <span>${visitText}</span></a>`;
-        }
-        if (filesHtml) {
-          filesBlock = `<div class="project-files">${filesHtml}</div>`;
-        }
-
-        return `<article class="project-card glass-card reveal">
-          <div class="project-img"><i class="fa-solid fa-code"></i></div>
-          <div class="project-body"><h3>${title}</h3><p>${desc}</p>
-          ${filesBlock}
-          <div class="project-tech">${tech}</div>
-          </div></article>`;
-      }).join('');
-
-      initRevealOnScroll();
-    }
   </script>
 </body>
 

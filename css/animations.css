@@ -1,3 +1,5 @@
+/* ============ MODERN CSS ANIMATIONS ============ */
+
 @keyframes loadFill {
   0% { width: 0; }
   50% { width: 70%; }
@@ -16,7 +18,7 @@
 
 @keyframes float {
   0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-16px); }
+  50% { transform: translateY(-12px); }
 }
 
 @keyframes spin {
@@ -24,13 +26,24 @@
   to { transform: rotate(360deg); }
 }
 
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
 @keyframes underlineGrow {
   to { width: 80%; max-width: 340px; }
 }
 
 @keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes fadeIn {
@@ -39,26 +52,56 @@
 }
 
 @keyframes pageFadeIn {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 16px var(--purple-glow); }
-  50% { box-shadow: 0 0 32px var(--purple-glow), 0 0 48px var(--blue-glow); }
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.65), 0 0 60px rgba(59, 130, 246, 0.45);
+  }
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+@keyframes skeletonShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-@keyframes typingBlink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+@keyframes heroOrbFloat1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(25px, -20px) scale(1.12);
+  }
+}
+
+@keyframes heroOrbFloat2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(1.15);
+  }
+}
+
+@keyframes borderRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

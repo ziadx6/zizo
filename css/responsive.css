@@ -1,4 +1,6 @@
-/* ============ RESPONSIVE STYLES ============ */
+/* ========================================================
+   RESPONSIVE DESIGN SYSTEM (Mobile, Tablet, Laptop, Desktop)
+   ======================================================== */
 
 /* --- Safe Area & Global Overflow Handling --- */
 html, body {
@@ -10,100 +12,242 @@ html, body {
 main {
   overflow-x: hidden;
   max-width: 100%;
+  width: 100%;
 }
 
 /* ========================================================
-   1. Ultra-Wide Screens (1600px+)
+   1. Desktop Monitor & Ultra-Wide (1441px+)
    ======================================================== */
-@media (min-width: 1600px) {
+@media (min-width: 1441px) {
   :root {
-    --max-w: 1380px;
+    --max-w: 1280px;
+    --space-6: 72px;
+    --space-7: 96px;
   }
+
+  .container {
+    max-width: 1280px;
+  }
+
   .hero-name {
-    font-size: 5rem;
+    font-size: 4.8rem;
   }
+
   .hero-profile {
     width: 420px;
+    max-width: 420px;
+  }
+
+  .hero-inner {
+    gap: var(--space-7);
   }
 }
 
 /* ========================================================
-   2. Desktop & Small Laptops (1025px - 1200px)
+   2. Laptop (1025px - 1440px)
    ======================================================== */
-@media (max-width: 1200px) {
+@media (max-width: 1440px) and (min-width: 1025px) {
   :root {
-    --max-w: 1080px;
+    --max-w: 1180px;
   }
+
+  .container {
+    max-width: 1180px;
+  }
+
   .hero-inner {
+    gap: var(--space-5);
+  }
+
+  .hero-profile {
+    width: 360px;
+    max-width: 360px;
+  }
+
+  .hero-name {
+    font-size: 4.2rem;
+  }
+}
+
+/* ========================================================
+   3. Tablet & iPad (768px - 1024px)
+   ======================================================== */
+@media (max-width: 1024px) and (min-width: 768px) {
+  :root {
+    --header-h: 70px;
+    --max-w: 100%;
+    --space-5: 40px;
+    --space-6: 52px;
+    --space-7: 72px;
+  }
+
+  .container,
+  .page,
+  .section,
+  .hero-inner {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* Hero Tablet */
+  .hero {
+    min-height: auto;
+    padding: var(--space-5) 0 var(--space-6);
+  }
+
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--space-5);
+  }
+
+  .hero-text {
+    text-align: center;
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-visual {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+  }
+
+  .hero-greeting {
+    margin-inline: auto;
+  }
+
+  .hero-intro {
+    margin-inline: auto;
+    font-size: 1.05rem;
+  }
+
+  .hero-cta {
+    margin-inline: auto;
+  }
+
+  .hero-typed {
+    justify-content: center;
+  }
+
+  .hero-profile {
+    width: min(320px, 60vw);
+    max-width: 320px;
+  }
+
+  /* Stats side-by-side 3 columns */
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 0 24px;
+  }
+
+  .stat-card {
+    padding: 24px 16px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+
+  /* Grids on Tablet */
+  .projects-grid,
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .about-grid,
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .contact-wrap {
+    grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  .nav-inner {
-    padding: 0 var(--space-3);
+
+  /* Footer Tablet */
+  .footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+    text-align: center;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-brand p {
+    margin-inline: auto;
+  }
+
+  .footer-social {
+    justify-content: center;
   }
 }
 
 /* ========================================================
-   3. Tablet & Mobile Navigation Breakpoint (<= 960px)
+   4. Mobile Navigation Drawer Breakpoint (<= 960px)
    ======================================================== */
 @media (max-width: 960px) {
-  :root {
-    --header-h: 68px;
-    --space-6: 44px;
-    --space-7: 60px;
-  }
-
-  /* --- Mobile Navigation Drawer --- */
   .nav-toggle {
     display: flex;
   }
 
+  /* Glassmorphism Mobile Menu Drawer */
   .nav-links {
     position: fixed;
-    top: var(--header-h);
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: calc(100vh - var(--header-h));
-    height: calc(100dvh - var(--header-h));
-    max-height: calc(100dvh - var(--header-h));
-    background: rgba(13, 13, 13, 0.98);
+    top: calc(var(--header-h) + 8px);
+    left: 14px;
+    right: 14px;
+    width: auto;
+    max-height: calc(100dvh - var(--header-h) - 24px);
+    background: rgba(13, 13, 22, 0.88);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 30px rgba(168, 85, 247, 0.15);
     flex-direction: column !important;
     justify-content: flex-start;
     align-items: stretch;
-    padding: 20px 20px max(32px, env(safe-area-inset-bottom));
+    padding: 16px;
     gap: 8px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    transform: translateY(-12px);
+    transform: translateY(-16px) scale(0.97);
     visibility: hidden;
     opacity: 0;
-    transition: transform var(--transition), opacity var(--transition), visibility var(--transition);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.35s ease;
     z-index: 999;
   }
 
-  [dir="rtl"] .nav-links {
-    flex-direction: column !important;
-    transform: translateY(-12px);
-  }
-
-  .nav-links.open,
-  [dir="rtl"] .nav-links.open {
-    transform: translateY(0);
+  .nav-links.open {
+    transform: translateY(0) scale(1);
     visibility: visible;
     opacity: 1;
   }
 
   .nav-links a {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 500;
     padding: 13px 18px;
     border-radius: var(--radius);
-    background: var(--surface);
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     color: var(--text);
     display: flex;
     align-items: center;
@@ -118,7 +262,7 @@ main {
   }
 
   .nav-links a:hover {
-    background: var(--surface-hover);
+    background: rgba(255, 255, 255, 0.08);
     border-color: var(--border-glow);
     color: #fff;
     transform: translateX(4px);
@@ -133,52 +277,223 @@ main {
     border-color: var(--border-glow);
     color: #fff;
     font-weight: 600;
-    box-shadow: 0 0 16px rgba(168, 85, 247, 0.25);
+    box-shadow: 0 0 16px rgba(168, 85, 247, 0.3);
+  }
+}
+
+/* ========================================================
+   5. Mobile Standard (320px - 767px)
+   ======================================================== */
+@media (max-width: 767px) {
+  :root {
+    --header-h: 68px;
+    --space-4: 24px;
+    --space-5: 32px;
+    --space-6: 44px;
+    --space-7: 56px;
   }
 
-  /* --- Hero Layout on Tablet --- */
+  /* Prevent auto-zoom on input focus in iOS */
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  .container,
+  .page,
+  .section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .page {
+    padding-top: 20px;
+    padding-bottom: 48px;
+  }
+
+  .section {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+
+  /* Hero Section on Mobile */
   .hero {
     min-height: auto;
-    padding: var(--space-4) var(--space-3) var(--space-5);
+    padding: var(--space-4) 0 var(--space-5);
   }
 
   .hero-inner {
     grid-template-columns: 1fr;
     text-align: center;
     gap: var(--space-4);
+    padding: 0 16px;
   }
 
   .hero-text {
     text-align: center;
     order: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
+  /* Hero Visual - Seamless rounded image without clipping box */
   .hero-visual {
     order: 2;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px 0;
   }
 
   .hero-greeting {
     margin-inline: auto;
+    font-size: 0.84rem;
+    padding: 6px 14px;
+  }
+
+  .hero-name {
+    font-size: clamp(2.2rem, 8.5vw, 3rem);
+    line-height: 1.15;
+  }
+
+  .hero-typed {
+    font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+    min-height: 2.2em;
+    justify-content: center;
   }
 
   .hero-intro {
+    font-size: 0.96rem;
+    line-height: 1.65;
     margin-inline: auto;
   }
 
   .hero-cta {
-    margin-inline: auto;
-  }
-
-  .hero-typed {
+    width: 100%;
+    max-width: 290px;
     justify-content: center;
+    padding: 13px 28px;
+    font-size: 0.96rem;
+    min-height: 48px;
   }
 
   .hero-profile {
-    width: min(280px, 60vw);
+    width: min(280px, 76vw);
+    max-width: 280px;
+    aspect-ratio: 1 / 1;
+    border-radius: 30px;
+    padding: 3px;
+    box-shadow: 0 0 35px rgba(168, 85, 247, 0.4), 0 14px 35px rgba(0, 0, 0, 0.6);
   }
 
-  /* --- Single-Column Timeline (LTR & RTL) --- */
+  .hero-profile img {
+    border-radius: 27px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-profile .rotating-border {
+    border-radius: 38px;
+    inset: -9px;
+    opacity: 0.75;
+  }
+
+  .hero-orb.one,
+  .hero-orb.two {
+    width: 130px;
+    height: 130px;
+    filter: blur(40px);
+    opacity: 0.55;
+  }
+
+  /* Stats on Mobile - 3 columns evenly distributed */
+  .stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 14px;
+    margin: var(--space-4) auto;
+  }
+
+  .stat-card {
+    padding: 16px 8px;
+    border-radius: var(--radius);
+  }
+
+  .stat-number {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+
+  /* Grids on Mobile */
+  .projects-grid,
+  .cert-grid,
+  .about-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  /* Toolbar */
+  .cert-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .cert-search {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+
+  .cert-filters {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cert-filter {
+    flex: 1 1 auto;
+    text-align: center;
+    padding: 9px 14px;
+    font-size: 0.84rem;
+    min-height: 40px;
+  }
+
+  /* Project File Links */
+  .project-files {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .project-file {
+    width: 100%;
+    justify-content: center;
+    padding: 10px 14px;
+    font-size: 0.84rem;
+    min-height: 42px;
+  }
+
+  .project-file span {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  /* Single-Column Timeline */
   .timeline {
     padding: var(--space-3) 0;
     max-width: 100%;
@@ -201,9 +516,9 @@ main {
     left: 0 !important;
     right: auto !important;
     text-align: start !important;
-    padding-left: 54px !important;
+    padding-left: 50px !important;
     padding-right: 0 !important;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   [dir="rtl"] .tl-item {
@@ -211,7 +526,7 @@ main {
     right: 0 !important;
     text-align: right !important;
     padding-left: 0 !important;
-    padding-right: 54px !important;
+    padding-right: 50px !important;
   }
 
   .tl-item .tl-dot,
@@ -233,156 +548,19 @@ main {
   .tl-card {
     text-align: start !important;
     width: 100%;
+    padding: 16px;
   }
 
   [dir="rtl"] .tl-card {
     text-align: right !important;
   }
 
-  /* --- Contact Section --- */
+  /* Contact Items */
   .contact-wrap {
     grid-template-columns: 1fr;
     gap: var(--space-3);
   }
 
-  /* --- Footer Tablet --- */
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-4);
-  }
-
-  .footer-brand {
-    grid-column: 1 / -1;
-    text-align: center;
-  }
-
-  .footer-brand p {
-    margin-inline: auto;
-  }
-
-  .footer-social {
-    justify-content: center;
-  }
-}
-
-/* ========================================================
-   4. Mobile Standard (<= 768px)
-   ======================================================== */
-@media (max-width: 768px) {
-  :root {
-    --space-5: 32px;
-    --space-6: 40px;
-    --space-7: 52px;
-  }
-
-  /* Prevent Safari auto-zoom on input focus */
-  input,
-  textarea,
-  select {
-    font-size: 16px !important;
-  }
-
-  .page {
-    padding: 24px var(--space-3) 48px;
-  }
-
-  .section {
-    padding: 28px var(--space-3);
-  }
-
-  /* Toolbar */
-  .cert-toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
-  }
-
-  .cert-search {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .cert-filters {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: flex-start;
-  }
-
-  .cert-filter {
-    flex: 1 1 auto;
-    text-align: center;
-    padding: 9px 14px;
-    font-size: 0.82rem;
-    min-height: 40px;
-  }
-
-  /* Grids */
-  .about-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .cert-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  /* Stats on Mobile */
-  .stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    padding: 0 var(--space-2);
-    margin: var(--space-4) auto;
-  }
-
-  .stat-card {
-    padding: 14px 8px;
-    border-radius: var(--radius);
-  }
-
-  .stat-number {
-    font-size: clamp(1.6rem, 5vw, 2.2rem);
-  }
-
-  .stat-label {
-    font-size: 0.78rem;
-  }
-
-  /* Project File Links */
-  .project-files {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .project-file {
-    width: 100%;
-    justify-content: center;
-    padding: 10px 14px;
-    font-size: 0.82rem;
-    min-height: 42px;
-  }
-
-  .project-file span {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-
-  /* Contact Items */
   .contact-item {
     padding: 14px;
   }
@@ -393,153 +571,8 @@ main {
     overflow-wrap: anywhere;
   }
 
-  /* Footer Mobile */
-  .footer-inner {
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: var(--space-3);
-  }
-
-  .footer-col {
-    text-align: center;
-  }
-
-  .footer-col ul {
-    align-items: center;
-  }
-}
-
-/* ========================================================
-   5. Compact Mobile (<= 540px)
-   ======================================================== */
-@media (max-width: 540px) {
-  :root {
-    --header-h: 64px;
-    --space-2: 12px;
-    --space-3: 16px;
-    --space-4: 24px;
-  }
-
-  .nav-inner {
-    padding: 0 14px;
-  }
-
-  .nav-logo {
-    font-size: 1.4rem;
-    letter-spacing: 2px;
-  }
-
-  .lang-switch {
-    padding: 7px 11px;
-    font-size: 0.8rem;
-    min-height: 38px;
-  }
-
-  /* Hero */
-  .hero {
-    padding: var(--space-3) 12px var(--space-4);
-  }
-
-  .hero-name {
-    font-size: clamp(2rem, 8.5vw, 2.8rem);
-  }
-
-  .hero-typed {
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
-    min-height: 2.2em;
-  }
-
-  .hero-intro {
-    font-size: 0.92rem;
-    line-height: 1.6;
-  }
-
-  .hero-cta {
-    padding: 12px 28px;
-    font-size: 0.92rem;
-    min-height: 48px;
-    width: 100%;
-    max-width: 280px;
-    justify-content: center;
-  }
-
-  .hero-profile {
-    width: min(240px, 68vw);
-  }
-
-  .hero-orb.one,
-  .hero-orb.two {
-    width: 100px;
-    height: 100px;
-  }
-
-  /* Intro Screen Mobile */
-  .intro-screen {
-    padding: 20px 16px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .intro-inner {
-    gap: 20px;
-    max-width: 100%;
-  }
-
-  .intro-profile {
-    width: 100px;
-    height: 100px;
-  }
-
-  .intro-brand {
-    font-size: clamp(2.4rem, 10vw, 3.6rem);
-    letter-spacing: 5px;
-  }
-
-  .intro-enter {
-    padding: 13px 32px;
-    font-size: 0.95rem;
-    min-height: 48px;
-  }
-
-  /* Page Headers */
-  .page-title {
-    font-size: clamp(1.8rem, 6.5vw, 2.4rem);
-  }
-
-  .page-subtitle {
-    font-size: 0.92rem;
-  }
-
-  .section-head h2 {
-    font-size: clamp(1.5rem, 5.5vw, 2rem);
-  }
-
-  /* Bio Card */
-  .about-bio {
-    font-size: 0.98rem;
-    line-height: 1.7;
-    padding: var(--space-2);
-  }
-
-  /* Goals */
-  .goal-item {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .goal-item .num {
-    width: 34px;
-    height: 34px;
-    font-size: 0.88rem;
-  }
-
-  .goal-item p {
-    font-size: 0.9rem;
-  }
-
-  /* Form */
   .contact-form {
-    padding: 16px 14px;
+    padding: 18px 14px;
   }
 
   .form-submit {
@@ -547,66 +580,176 @@ main {
     width: 100%;
   }
 
-  /* Social Icons */
-  .footer-social a {
-    width: 42px;
-    height: 42px;
-    font-size: 0.95rem;
+  /* Bio Card */
+  .about-bio {
+    font-size: 1rem;
+    line-height: 1.7;
+    padding: var(--space-3);
+  }
+
+  /* Goals */
+  .goal-item {
+    padding: 12px 14px;
+    gap: 12px;
+  }
+
+  .goal-item .num {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .goal-item p {
+    font-size: 0.94rem;
+  }
+
+  /* ============ FOOTER MOBILE ============
+     Brand centered at top, Quick Links & Connect side-by-side in 2 columns */
+  .footer-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4) var(--space-3);
+    text-align: center;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .footer-brand .logo {
+    margin-bottom: 6px;
+    font-size: 1.75rem;
+  }
+
+  .footer-brand p {
+    margin: 0 auto;
+    font-size: 0.9rem;
+    max-width: 280px;
+  }
+
+  .footer-social {
+    justify-content: center;
+    margin-top: 14px !important;
+    gap: 12px;
+  }
+
+  .footer-col {
+    text-align: center;
+    padding: 4px 6px;
+  }
+
+  .footer-col h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #fff;
+  }
+
+  .footer-col ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .footer-col a {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    transition: all var(--transition);
+    display: inline-block;
+    padding: 2px 6px;
+  }
+
+  .footer-col a:hover {
+    color: var(--purple-bright);
+    transform: translateY(-1px);
+  }
+
+  /* Toast Mobile */
+  #toast-container {
+    left: 14px;
+    right: 14px;
+    top: 14px;
+  }
+
+  .toast {
+    min-width: 100%;
+    max-width: 100%;
+    padding: 14px 16px;
   }
 }
 
 /* ========================================================
-   6. Extra Small Mobile (<= 380px)
+   6. Compact Mobile (<= 420px)
    ======================================================== */
-@media (max-width: 380px) {
+@media (max-width: 420px) {
+  .nav-inner {
+    padding: 0 12px;
+  }
+
+  .nav-logo {
+    font-size: 1.45rem;
+    letter-spacing: 2px;
+  }
+
+  .lang-switch {
+    padding: 6px 12px;
+    font-size: 0.82rem;
+  }
+
   .hero-name {
-    font-size: 1.85rem;
+    font-size: 2rem;
   }
 
   .hero-profile {
-    width: min(200px, 64vw);
+    width: min(250px, 74vw);
+    max-width: 250px;
   }
 
+  .footer-inner {
+    gap: var(--space-3) 8px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.95rem;
+  }
+
+  .footer-col a {
+    font-size: 0.86rem;
+  }
+
+  /* Stats on ultra small screens */
   .stats {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 6px;
+    padding: 0 8px;
   }
 
   .stat-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 12px 16px;
-    text-align: start;
-  }
-
-  [dir="rtl"] .stat-card {
-    text-align: right;
+    padding: 12px 4px;
   }
 
   .stat-number {
-    font-size: 1.7rem;
+    font-size: 1.45rem;
   }
 
   .stat-label {
-    font-size: 0.82rem;
-    margin-top: 0;
+    font-size: 0.72rem;
   }
 
   .page-title {
-    font-size: 1.6rem;
-  }
-
-  .cert-filter {
-    font-size: 0.78rem;
-    padding: 7px 10px;
+    font-size: 1.8rem;
   }
 
   .show-intro-btn {
     width: 100%;
-    padding: 12px 20px;
-    font-size: 0.9rem;
     justify-content: center;
+    padding: 14px 20px;
+    font-size: 0.92rem;
   }
 }
 

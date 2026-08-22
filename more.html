@@ -9,7 +9,7 @@
   <title>ZIZO | More</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
@@ -18,7 +18,7 @@
 </head>
 <body>
   <nav class="navbar">
-    <div class="nav-inner">
+    <div class="nav-inner container">
       <a href="index.html" class="nav-logo">ZIZO</a>
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav.home">Home</a></li>
@@ -37,7 +37,7 @@
   </nav>
 
   <main>
-    <div class="page page-fade">
+    <div class="page page-fade container">
       <div class="page-header reveal">
         <h1 class="page-title" data-i18n="more.title">More</h1>
         <p class="page-subtitle" data-i18n="more.subtitle">Skills, achievements and goals</p>
@@ -86,7 +86,7 @@
 
       <!-- Achievements -->
       <div class="section-head reveal"><h2 data-i18n="more.achievementsTitle">Achievements</h2></div>
-      <section class="stats">
+      <section class="stats container" style="padding:0; margin-bottom:var(--space-6);">
         <div class="stat-card reveal"><div class="stat-number" data-count="5">0</div><div class="stat-label" data-i18n="more.counters.certs">Certificates Earned</div></div>
         <div class="stat-card reveal"><div class="stat-number" data-count="4">0</div><div class="stat-label" data-i18n="more.counters.projects">Projects Completed</div></div>
         <div class="stat-card reveal"><div class="stat-number" data-count="12">0</div><div class="stat-label" data-i18n="more.counters.skills">Skills Learned</div></div>
@@ -104,7 +104,7 @@
   </main>
 
   <footer class="footer">
-    <div class="footer-inner">
+    <div class="footer-inner container">
       <div class="footer-brand">
         <div class="logo">ZIZO</div>
         <p data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</p>
@@ -133,7 +133,7 @@
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom container">
       <span data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</span> &copy; <span id="year"></span> - <span data-i18n="footer.rights">All Rights Reserved</span>
     </div>
   </footer>
@@ -150,6 +150,7 @@
       if (!Translations || !Translations[lang]) return;
       const goals = Translations[lang].more.goals || [];
       const list = document.getElementById('goalsList');
+      if (!list) return;
       list.innerHTML = goals.map((g, i) => `
         <div class="goal-item glass-card reveal">
           <div class="num">${i + 1}</div>
