@@ -128,35 +128,35 @@
       "items": {
         "2021": {
           "title": "Accounting Studies",
-          "desc": "Started my academic journey in the Faculty of Commerce, Accounting Department."
+          "desc": "I began my educational journey in accounting through commercial secondary school, where I learned the fundamentals of accounting and financial principles.."
         },
         "2022-2023": {
           "title": "Accounting Development",
-          "desc": "Deepened my accounting knowledge and began exploring business applications."
+          "desc": "I deepened my understanding of accounting and business studies, gaining broader knowledge of financial concepts and business management."
         },
         "2023-2024": {
           "title": "Microsoft Office",
-          "desc": "Mastered Excel, Word, PowerPoint, and Access for professional productivity."
+          "desc": "I mastered Microsoft Office applications, including Excel, Word, PowerPoint, and Access, to improve productivity and professional organization."
         },
         "2024-2025": {
-          "title": "Programming",
-          "desc": "Started learning programming with C++ and Python."
+          "title": "Introduction to Programming",
+          "desc": "I started my journey into programming by learning software development fundamentals and problem-solving using C++."
         },
         "2025": {
-          "title": "Web Development",
-          "desc": "Learned HTML, CSS, and JavaScript to build modern websites."
+          "title": "CS50 by Harvard University",
+          "desc": "I successfully completed CS50, building a strong foundation in computer science, algorithms, data structures, and software development."
         },
-        "2026a": {
-          "title": "Harvard CS50",
-          "desc": "Completed Harvard's CS50 Introduction to Computer Science course."
+        "2025-2026": {
+          "title": "Web Development & Technical Projects",
+          "desc": "I expanded my web development skills using HTML, CSS, and JavaScript while creating practical projects to gain real-world technical experience."
         },
-        "2026b": {
+        "2026": {
           "title": "Siemens Business Project",
-          "desc": "Completed a business simulation project with Siemens using Microsoft Office tools."
+          "desc": "I completed the Siemens Business Simulation Project, applying data management, analysis, and organizational skills using Microsoft Office tools."
         },
         "future": {
-          "title": "Future",
-          "desc": "Continue improving skills and building larger, impactful projects."
+          "title": "Towards Professional Growth",
+          "desc": "I aim to continue developing my programming and technology skills, building innovative projects, and pursuing continuous learning and professional growth."
         }
       }
     },
@@ -360,35 +360,35 @@
       "items": {
         "2021": {
           "title": "دراسة المحاسبة",
-          "desc": "بدات رحلتي الدراسية في دراسة المحاسبة من مدرسة موط الثانوية التجارية"
+          "desc":"بدأت رحلتي التعليمية في مجال المحاسبة من خلال الدراسة بالثانوية التجارية، حيث اكتسبت أساسيات المحاسبة والمفاهيم المالية الأولى."
         },
         "2022-2023": {
-          "title": "تطوير المحاسبة",
-          "desc": "أثناء الدراسة تعمقت أكثر في دراسة المحاسة واستكشاف ادارة الاعمال"
+          "title":" تطوير المهارات المحاسبية",
+          "desc":" عمّقت فهمي للمحاسبة والعلوم التجارية، واكتسبت معرفة أوسع بالمفاهيم المالية وإدارة الأعمال."
         },
         "2023-2024": {
           "title": "مايكروسوفت أوفيس",
-          "desc": "أتقنت الاكسل والورد والباور بوينت للأنتاجية المهنية"
+          "desc":" أتقنت استخدام برامج Microsoft Office، بما في ذلك Excel وWord وPowerPoint وAccess، لتحسين الإنتاجية وتنظيم الأعمال باحترافية."
         },
         "2024-2025": {
-          "title": "البرمجة",
-          "desc": "بدات اتعلم لغة برمجة C++ ولغة بايثون"
+          "title":" بداية تعلم البرمجة",
+          "desc":" بدأت رحلتي في عالم البرمجة من خلال تعلم أساسيات تطوير البرمجيات وحل المشكلات باستخدام لغة C++."
         },
         "2025": {
-          "title": "تطوير الويب",
-          "desc": "تعلمت HTML و CSS و JavaScript لبناء مواقع حديثة."
+          "title":" CS50 من هارفارد",
+          "desc": "كملت دراسة CS50، واكتسبت أساسًا قويًا في علوم الحاسب والخوارزميات وهياكل البيانات وتطوير البرمجيات."
         },
-        "2026a": {
-          "title": "هارفارد CS50",
-          "desc": "أكملت دورة CS50 مقدمة في علوم الحاسب من جامعة هارفارد."
+        "2025-2026": {
+          "title": "تطوير الويب والمشاريع التقنية",
+          "desc": "وسعت مهاراتي في تطوير الويب باستخدام HTML وCSS وJavaScript، مع تنفيذ مشاريع عملية لبناء خبرة تقنية حقيقية."
         },
-        "2026b": {
+        "2026": {
           "title": "مشروع سيمنز للأعمال",
-          "desc": "أكملت مشروع محاكاة أعمال مع سيمنز باستخدام أدوات مايكروسوفت أوفيس."
+          "desc": "أنجزت مشروع محاكاة الأعمال الخاص بسيمنز، مطبقًا مهارات التحليل وإدارة البيانات والتنظيم باستخدام أدوات Microsoft Office."
         },
         "future": {
           "title": "المستقبل",
-          "desc": "مواصلة تطوير المهارات وبناء مشاريع أكبر وأكثر تأثيراً."
+          "desc": "أسعى إلى تطوير مهاراتي في البرمجة والتكنولوجيا، وبناء مشاريع مبتكرة ذات تأثير حقيقي، مع مواصلة التعلم والتطور المهني."
         }
       }
     },

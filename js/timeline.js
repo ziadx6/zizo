@@ -1,6 +1,13 @@
 function initTimelineReveal() {
   const items = document.querySelectorAll('.tl-item');
   if (!items.length) return;
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(item => {
+      item.classList.add('reveal');
+      item.classList.add('visible');
+    });
+    return;
+  }
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -8,7 +15,7 @@ function initTimelineReveal() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
   items.forEach(item => {
     item.classList.add('reveal');
     observer.observe(item);

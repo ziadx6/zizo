@@ -28,7 +28,7 @@ function initCounters() {
         observer.unobserve(el);
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
 
   counters.forEach(c => observer.observe(c));
 }

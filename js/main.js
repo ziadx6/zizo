@@ -3,25 +3,68 @@ function initNavbar() {
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
 
+  // Create or reuse backdrop for mobile drawer
+  let backdrop = document.querySelector('.nav-backdrop');
+  if (!backdrop) {
+    backdrop = document.createElement('div');
+    backdrop.className = 'nav-backdrop';
+    document.body.appendChild(backdrop);
+  }
+
   if (navbar) {
-    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 30);
+    const onScroll = () => navbar.classList.toggle('scrolled', window.scrollY > 20);
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
   }
 
+  function closeNav() {
+    if (toggle) {
+      toggle.classList.remove('active');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    if (links) links.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('active');
+    document.body.classList.remove('no-scroll');
+  }
+
+  function openNav() {
+    if (toggle) {
+      toggle.classList.add('active');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    if (links) links.classList.add('open');
+    if (backdrop) backdrop.classList.add('active');
+    document.body.classList.add('no-scroll');
+  }
+
   if (toggle && links) {
-    toggle.addEventListener('click', () => {
-      toggle.classList.toggle('active');
-      links.classList.toggle('open');
-      document.body.classList.toggle('no-scroll', links.classList.contains('open'));
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (links.classList.contains('open')) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
+
+    backdrop.addEventListener('click', closeNav);
+
     links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        toggle.classList.remove('active');
-        links.classList.remove('open');
-        document.body.classList.remove('no-scroll');
-      });
+      a.addEventListener('click', closeNav);
     });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        closeNav();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 960 && links.classList.contains('open')) {
+        closeNav();
+      }
+    }, { passive: true });
   }
 
   const path = window.location.pathname.split('/').pop() || 'index.html';
@@ -36,6 +79,12 @@ function initNavbar() {
 function initRevealOnScroll() {
   const els = document.querySelectorAll('.reveal');
   if (!els.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(el => el.classList.add('visible'));
+    return;
+  }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -43,17 +92,61 @@ function initRevealOnScroll() {
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
+
   els.forEach(el => observer.observe(el));
 }
+function showToast(message, type = 'success') {
 
+  const container = document.getElementById('toast-container');
+
+  if (!container) return;
+
+  const toast = document.createElement('div');
+
+  toast.className = `toast ${type}`;
+
+  let icon = '<i class="fa-solid fa-circle-check"></i>';
+
+  if (type === 'error') {
+    icon = '<i class="fa-solid fa-circle-xmark"></i>';
+  }
+
+  if (type === 'loading') {
+    icon = '<i class="fa-solid fa-spinner fa-spin"></i>';
+  }
+
+  toast.innerHTML = `
+    <span>${icon}</span>
+    <span>${message}</span>
+  `;
+
+  container.appendChild(toast);
+
+  setTimeout(() => {
+    toast.classList.add('show');
+  }, 50);
+
+  if (type !== 'loading') {
+    setTimeout(() => {
+      toast.classList.remove('show');
+
+      setTimeout(() => {
+        toast.remove();
+      }, 400);
+
+    }, 5000);
+  }
+
+  return toast;
+}
 function initContactForm() {
   const form = document.querySelector('.contact-form');
   if (!form) return;
   const nameInput = form.querySelector('#cf-name');
   const emailInput = form.querySelector('#cf-email');
   const msgInput = form.querySelector('#cf-message');
-  const success = form.querySelector('.form-success');
+  const success = document.getElementById('result');
 
   function validate() {
     let valid = true;
@@ -84,18 +177,108 @@ function initContactForm() {
     return valid;
   }
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    if (!validate()) return;
-    if (success) {
-      success.textContent = getFormErr('success');
-      success.classList.add('show');
-      form.reset();
-      setTimeout(() => success.classList.remove('show'), 4000);
-    }
-  });
-}
 
+    if (!validate()) return;
+
+    const submitBtn = form.querySelector('.form-submit');
+
+    const originalText = submitBtn.innerHTML;
+
+    submitBtn.innerHTML = '⏳ Sending...';
+    submitBtn.disabled = true;
+
+    const loadingToast = showToast(
+      'Sending your message...',
+      'loading'
+    );
+
+    try {
+
+      const formData = new FormData();
+
+      formData.append(
+        "access_key",
+        "174edbd8-27af-45dc-af18-a2c8a7727f4a"
+      );
+
+      formData.append(
+        "name",
+        nameInput.value
+      );
+
+      formData.append(
+        "email",
+        emailInput.value
+      );
+
+      formData.append(
+        "message",
+        msgInput.value
+      );
+
+      const response = await fetch(
+        "https://api.web3forms.com/submit",
+        {
+          method: "POST",
+          body: formData
+        }
+      );
+
+      const data = await response.json();
+
+      if (data.success) {
+
+        loadingToast.remove();
+
+        showToast(
+          'Message sent successfully!',
+          'success'
+        );
+
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 150,
+            spread: 90,
+            origin: { y: 0.2 }
+          });
+        }
+
+        form.reset();
+
+      } else {
+
+        loadingToast.remove();
+
+        showToast(
+          data.message || 'Failed to send message',
+          'error'
+        );
+
+      }
+
+    } catch (error) {
+
+      loadingToast.remove();
+
+      showToast(
+        'Something went wrong. Please try again.',
+        'error'
+      );
+
+      console.error(error);
+
+    } finally {
+
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+
+    }
+
+  }); // يقفل addEventListener
+
+} // يقفل initContactForm
 function getFormErr(key) {
   const lang = Storage.getLang();
   if (!Translations || !Translations[lang]) return key;

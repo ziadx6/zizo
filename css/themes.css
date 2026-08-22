@@ -18,7 +18,9 @@
   font-family: 'Cairo', 'Tajawal', var(--font-display);
 }
 
-[dir="rtl"] .nav-links { flex-direction: row; }
+@media (min-width: 961px) {
+  [dir="rtl"] .nav-links { flex-direction: row; }
+}
 
 /* Focus states for accessibility */
 a:focus-visible,

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -9,13 +10,16 @@
   <title>ZIZO | Contact</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Cairo:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/themes.css">
 </head>
+
 <body>
   <nav class="navbar">
     <div class="nav-inner">
@@ -30,7 +34,8 @@
         <li><a href="more.html" data-i18n="nav.more">More</a></li>
       </ul>
       <div class="nav-right">
-        <button class="lang-switch" aria-label="Switch language"><i class="fa-solid fa-language"></i><span>ع</span></button>
+        <button class="lang-switch" aria-label="Switch language"><i
+            class="fa-solid fa-language"></i><span>ع</span></button>
         <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
       </div>
     </div>
@@ -47,40 +52,50 @@
         <div class="contact-info reveal">
           <a class="contact-item glass-card" href="mailto:ziad.khalid.x6@gmail.com">
             <div class="icon email"><i class="fa-solid fa-envelope"></i></div>
-            <div class="meta"><span class="label" data-i18n="contact.email">Email</span><span class="value">ziad.khalid.x6@gmail.com</span></div>
+            <div class="meta"><span class="label" data-i18n="contact.email">Email</span><span
+                class="value">ziad.khalid.x6@gmail.com</span></div>
           </a>
           <a class="contact-item glass-card" href="https://github.com/ziadx6" target="_blank" rel="noopener">
             <div class="icon github"><i class="fa-brands fa-github"></i></div>
-            <div class="meta"><span class="label" data-i18n="contact.github">GitHub</span><span class="value">github.com/ziadx6</span></div>
+            <div class="meta"><span class="label" data-i18n="contact.github">GitHub</span><span
+                class="value">github.com/ziadx6</span></div>
           </a>
-          <a class="contact-item glass-card" href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener">
+          <a class="contact-item glass-card" href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank"
+            rel="noopener">
             <div class="icon linkedin"><i class="fa-brands fa-linkedin-in"></i></div>
-            <div class="meta"><span class="label" data-i18n="contact.linkedin">LinkedIn</span><span class="value">linkedin.com/in/ziad-khalid-x6</span></div>
+            <div class="meta"><span class="label" data-i18n="contact.linkedin">LinkedIn</span><span
+                class="value">linkedin.com/in/ziad-khalid-x6</span></div>
           </a>
           <a class="contact-item glass-card" href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener">
             <div class="icon facebook"><i class="fa-brands fa-facebook-f"></i></div>
-            <div class="meta"><span class="label" data-i18n="contact.facebook">Facebook</span><span class="value">facebook.com/Ziad.x6</span></div>
+            <div class="meta"><span class="label" data-i18n="contact.facebook">Facebook</span><span
+                class="value">facebook.com/Ziad.x6</span></div>
           </a>
         </div>
 
-        <form class="contact-form glass-card reveal" novalidate>
+        <form id="form" class="contact-form glass-card reveal" novalidate>
+          <input type="hidden" name="access_key" value="174edbd8-27af-45dc-af18-a2c8a7727f4a">
           <div class="form-group">
             <label for="cf-name" data-i18n="contact.form.name">Your Name</label>
-            <input type="text" id="cf-name" data-i18n-placeholder="contact.form.name" placeholder="Your Name">
+            <input type="text" id="cf-name" name="name" data-i18n-placeholder="contact.form.name"
+              placeholder="Your Name" required>
             <span class="form-error" data-err="name"></span>
           </div>
           <div class="form-group">
             <label for="cf-email" data-i18n="contact.form.emailLabel">Your Email</label>
-            <input type="email" id="cf-email" data-i18n-placeholder="contact.form.emailLabel" placeholder="Your Email">
+            <input type="email" id="cf-email" name="email" data-i18n-placeholder="contact.form.emailLabel"
+              placeholder="Your Email" required>
             <span class="form-error" data-err="email"></span>
           </div>
           <div class="form-group">
             <label for="cf-message" data-i18n="contact.form.message">Your Message</label>
-            <textarea id="cf-message" data-i18n-placeholder="contact.form.message" placeholder="Your Message"></textarea>
+            <textarea id="cf-message" name="message" data-i18n-placeholder="contact.form.message"
+              placeholder="Your Message" required></textarea>
             <span class="form-error" data-err="message"></span>
           </div>
-          <button type="submit" class="form-submit"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="contact.form.send">Send Message</span></button>
-          <div class="form-success"></div>
+          <button type="submit" class="form-submit"><i class="fa-solid fa-paper-plane"></i> <span
+              data-i18n="contact.form.send">Send Message</span></button>
+          <div id="result"></div>
         </form>
       </div>
     </div>
@@ -92,9 +107,12 @@
         <div class="logo">ZIZO</div>
         <p data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</p>
         <div class="footer-social" style="margin-top:16px">
-          <a href="https://github.com/ziadx6" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://github.com/ziadx6" target="_blank" rel="noopener" aria-label="GitHub"><i
+              class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener" aria-label="LinkedIn"><i
+              class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener" aria-label="Facebook"><i
+              class="fa-brands fa-facebook-f"></i></a>
           <a href="mailto:ziad.khalid.x6@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
@@ -117,7 +135,8 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</span> &copy; <span id="year"></span> - <span data-i18n="footer.rights">All Rights Reserved</span>
+      <span data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</span> &copy; <span id="year"></span>
+      - <span data-i18n="footer.rights">All Rights Reserved</span>
     </div>
   </footer>
 
@@ -125,6 +144,11 @@
   <script src="js/translations.js"></script>
   <script src="js/language.js"></script>
   <script src="js/main.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <div id="toast-container"></div>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
+
 </html>
