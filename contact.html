@@ -34,6 +34,10 @@
           document.documentElement.setAttribute('dir', 'ltr');
           document.documentElement.setAttribute('lang', 'en');
         }
+        var d = sessionStorage.getItem('zizo_nav_dir');
+        if (d === 'next' || d === 'prev') {
+          document.documentElement.classList.add('page-arriving-' + d);
+        }
       } catch(e) {}
     })();
   </script>
@@ -54,10 +58,10 @@
   <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/animations.css">
-  <link rel="stylesheet" href="css/responsive.css">
-  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/style.css?v=20261110">
+  <link rel="stylesheet" href="css/animations.css?v=20261110">
+  <link rel="stylesheet" href="css/responsive.css?v=20261110">
+  <link rel="stylesheet" href="css/themes.css?v=20261110">
 </head>
 
 <body>
@@ -191,7 +195,7 @@
   <script src="js/storage.js" defer></script>
   <script src="js/translations.js" defer></script>
   <script src="js/language.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=20261110" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
 
   <div id="toast-container"></div>

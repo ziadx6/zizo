@@ -444,6 +444,7 @@ function initMobilePageFlow() {
     clearTimeout(navDelayTimer);
     navDelayTimer = null;
     document.body.classList.remove('leaving-next', 'leaving-prev');
+    document.documentElement.classList.remove('page-arriving-next', 'page-arriving-prev');
     progressBar.classList.remove('active', 'done');
     fogCurtain.classList.remove('active');
   }
@@ -486,7 +487,7 @@ function initMobilePageFlow() {
     requestAnimationFrame(() => {
       navDelayTimer = setTimeout(() => {
         window.location.href = href;
-      }, 130);
+      }, 190);
     });
   }
 
@@ -561,8 +562,8 @@ function initMobilePageFlow() {
     syncDockVisibility();
   }
 
-  // Enhance navbar links with smooth transition too
-  document.querySelectorAll('.nav-links a').forEach((a) => {
+  // Enhance all internal page links (navbar, hero CTA, view-all, footer) with smooth fog transition
+  document.querySelectorAll('.nav-links a, .nav-logo, .hero-cta, .view-all, .footer-col a').forEach((a) => {
     const href = a.getAttribute('href');
     const targetIdx = PAGE_ORDER.findIndex(p => p.href === href);
     if (targetIdx !== -1 && targetIdx !== currentIndex) {

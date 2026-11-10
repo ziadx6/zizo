@@ -2020,12 +2020,14 @@ body.leaving-prev .footer {
   transform: translate3d(0, 16px, 0) scale(0.98);
 }
 
-body.page-enter-next main {
-  animation: pageEnterNext 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+body.page-enter-next main,
+html.page-arriving-next main {
+  animation: pageEnterNext 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-body.page-enter-prev main {
-  animation: pageEnterPrev 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+body.page-enter-prev main,
+html.page-arriving-prev main {
+  animation: pageEnterPrev 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .page-fog-curtain {
@@ -2039,10 +2041,10 @@ body.page-enter-prev main {
   opacity: 0;
   transform: scale(1.03);
   background:
-    radial-gradient(ellipse 75% 60% at 25% 30%, rgba(168, 85, 247, 0.36), transparent 62%),
-    radial-gradient(ellipse 70% 55% at 75% 70%, rgba(59, 130, 246, 0.3), transparent 62%),
-    radial-gradient(circle at 50% 50%, rgba(16, 16, 28, 0.84), rgba(10, 10, 16, 0.94) 75%);
-  transition: opacity 0.16s ease, transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    radial-gradient(ellipse 80% 65% at 24% 28%, rgba(168, 85, 247, 0.42), transparent 64%),
+    radial-gradient(ellipse 75% 60% at 76% 72%, rgba(59, 130, 246, 0.34), transparent 64%),
+    radial-gradient(circle at 50% 50%, rgba(18, 16, 32, 0.88), rgba(10, 10, 16, 0.96) 76%);
+  transition: opacity 0.18s ease, transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .page-fog-curtain.active {
@@ -2051,7 +2053,7 @@ body.page-enter-prev main {
 }
 
 .page-fog-curtain.arriving {
-  animation: fogClear 0.36s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: fogClear 0.44s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .page-fog-badge {
