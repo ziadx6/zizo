@@ -4,13 +4,13 @@
 
 /* --- Safe Area & Global Overflow Handling --- */
 html, body {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
 }
 
 main {
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100%;
   width: 100%;
 }
@@ -291,6 +291,7 @@ main {
     --space-5: 32px;
     --space-6: 44px;
     --space-7: 56px;
+    --glass-blur: 8px;
   }
 
   /* Prevent auto-zoom on input focus in iOS */
@@ -500,14 +501,16 @@ main {
   }
 
   .timeline::before {
-    left: 20px !important;
-    right: auto !important;
+    inset-inline-start: 20px !important;
+    inset-inline-end: auto !important;
+    left: auto;
+    right: auto;
     transform: none !important;
   }
 
   [dir="rtl"] .timeline::before {
-    left: auto !important;
-    right: 20px !important;
+    inset-inline-start: 20px !important;
+    inset-inline-end: auto !important;
     transform: none !important;
   }
 

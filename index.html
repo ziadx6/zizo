@@ -8,29 +8,67 @@
     content="Ziad Khaled - Personal Portfolio. Accounting student, programmer, and web developer.">
   <meta name="author" content="Ziad Khaled">
   <meta name="theme-color" content="#0D0D0D">
-  <meta property="og:title" content="Ziad Khaled - Portfolio">
-  <meta property="og:description" content="Accounting student, programmer, and web developer.">
+  <meta property="og:title" content="Ziad Khaled | Personal Portfolio">
+  <meta property="og:description" content="Accounting Student • Programmer • Web Developer">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ziadx6.github.io/zizo/">
+  <meta property="og:site_name" content="ZIZO | Ziad Khaled">
+  <meta property="og:image" content="https://ziadx6.github.io/zizo/assets/og-preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="936">
+  <meta property="og:image:height" content="1024">
+  <meta property="og:image:alt" content="Ziad Khaled - Personal Portfolio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ziad Khaled | Personal Portfolio">
+  <meta name="twitter:description" content="Accounting Student • Programmer • Web Developer">
+  <meta name="twitter:image" content="https://ziadx6.github.io/zizo/assets/og-preview.jpg">
   <title>ZIZO | Home</title>
+  
+  <!-- Immediate Pre-Render Direction Init (Eliminates RTL/LTR FOUC and scrollbar edge jumping) -->
+  <script>
+    (function(){
+      try {
+        var l = localStorage.getItem('zizo_lang');
+        if (l === 'ar') {
+          document.documentElement.setAttribute('dir', 'rtl');
+          document.documentElement.setAttribute('lang', 'ar');
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          document.documentElement.setAttribute('lang', 'en');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- Security Headers & Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+  <!-- Preconnect and Critical Preloads -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap"
-    rel="stylesheet">
+  <link rel="preload" as="image" href="assets/profile/profile.jpg" fetchpriority="high">
+  
+  <!-- Optimized Fonts with font-display swap -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap">
+  
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
   <link rel="stylesheet" href="css/themes.css">
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 
 <body>
 
   <!-- Loading Screen -->
-  <div class="loading-screen">
+  <div class="loading-screen hidden" id="loadingScreen">
     <div class="loading-brand">ZIZO</div>
     <div class="loading-text">Loading Portfolio...</div>
     <div class="loading-bar">
@@ -42,7 +80,7 @@
   <div class="intro-screen hidden" id="introScreen">
     <div id="particles-intro"></div>
     <div class="intro-inner">
-      <div class="intro-profile"><img src="assets/profile/killua.jpg" alt="Ziad Khaled"></div>
+      <div class="intro-profile"><img src="assets/profile/killua.jpg" alt="Ziad Khaled" width="140" height="140" loading="eager" decoding="async"></div>
       <div class="intro-brand">ZIZO</div>
       <div class="intro-underline"></div>
       <div class="intro-typed" id="introTyped"><span class="cursor"></span></div>
@@ -92,7 +130,7 @@
           <div class="hero-orb two"></div>
           <div class="hero-profile">
             <div class="rotating-border"></div>
-            <img src="assets/profile/profile.jpg" alt="Ziad Khaled" onerror="this.onerror=null; this.src='assets/profile/killua.jpg';">
+            <img src="assets/profile/profile.jpg" alt="Ziad Khaled" width="380" height="380" loading="eager" fetchpriority="high" decoding="async" onerror="this.onerror=null; this.src='assets/profile/killua.jpg';">
           </div>
         </div>
       </div>
@@ -142,12 +180,14 @@
         <div class="logo">ZIZO</div>
         <p data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</p>
         <div class="footer-social" style="margin-top:16px">
-          <a href="https://github.com/ziadx6" target="_blank" rel="noopener" aria-label="GitHub"><i
+          <a href="https://github.com/ziadx6" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
               class="fa-brands fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener" aria-label="LinkedIn"><i
+          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i
               class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener" aria-label="Facebook"><i
+          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i
               class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/ziad.x6" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
+              class="fa-brands fa-instagram"></i></a>
           <a href="mailto:ziad.khalid.x6@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
@@ -175,37 +215,49 @@
     </div>
   </footer>
 
-  <!-- Particles.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
-  <!-- App scripts -->
-  <script src="js/storage.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/language.js"></script>
-  <script src="js/typing.js"></script>
-  <script src="js/intro.js"></script>
-  <script src="js/counters.js"></script>
-  <script src="js/timeline.js"></script>
-  <script src="js/certificates.js"></script>
-  <script src="js/main.js"></script>
+  <!-- App scripts with defer for zero render-blocking -->
+  <script src="js/security.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/translations.js" defer></script>
+  <script src="js/language.js" defer></script>
+  <script src="js/typing.js" defer></script>
+  <script src="js/intro.js" defer></script>
+  <script src="js/counters.js" defer></script>
+  <script src="js/timeline.js" defer></script>
+  <script src="js/certificates.js" defer></script>
+  <script src="js/main.js" defer></script>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', async function () {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-    // Intro flow
-    (async function () {
       if (typeof loadTranslations === 'function') {
         await loadTranslations();
       }
+      
       const params = new URLSearchParams(window.location.search);
       const forceIntro = params.get('intro') === '1';
       const screen = document.getElementById('introScreen');
-      const shouldShow = screen && (forceIntro || !Storage.hasSeenIntro());
+      const shouldShow = screen && (forceIntro || (typeof Storage !== 'undefined' && !Storage.hasSeenIntro()));
 
       const launchIntro = () => {
         if (!screen) return;
         screen.classList.remove('hidden');
         document.body.classList.add('no-scroll');
-        if (typeof initIntroParticles === 'function') initIntroParticles();
+        
+        // Lazy-load particles.js only when intro is explicitly rendered
+        if (!window.particlesJS) {
+          const pScript = document.createElement('script');
+          pScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js';
+          pScript.onload = () => {
+            if (typeof initIntroParticles === 'function') initIntroParticles();
+          };
+          document.body.appendChild(pScript);
+        } else if (typeof initIntroParticles === 'function') {
+          initIntroParticles();
+        }
+
         if (typeof startTyped === 'function') {
           startTyped(document.getElementById('introTyped'), 'intro.typed', { speed: 70, pause: 1200 });
         }
@@ -214,31 +266,35 @@
           enter.onclick = () => {
             screen.classList.add('hidden');
             document.body.classList.remove('no-scroll');
-            Storage.markIntroSeen();
+            if (typeof Storage !== 'undefined') Storage.markIntroSeen();
             setTimeout(() => screen.remove(), 700);
+            if (typeof startTyped === 'function') {
+              startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
+            }
           };
         }
       };
 
       const launchHome = () => {
         if (screen) screen.remove();
+        document.body.classList.remove('no-scroll');
         if (typeof startTyped === 'function') {
           startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
         }
       };
 
-      // Wait for loading screen
-      setTimeout(() => {
-        if (shouldShow) launchIntro();
-        else launchHome();
-      }, 1800);
+      if (shouldShow) {
+        launchIntro();
+      } else {
+        launchHome();
+      }
 
       document.addEventListener('lang:changed', () => {
         if (document.getElementById('homeTyped') && typeof startTyped === 'function') {
           startTyped(document.getElementById('homeTyped'), 'home.typed', { speed: 80, pause: 1300 });
         }
       });
-    })();
+    });
   </script>
 </body>
 

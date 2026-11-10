@@ -6,11 +6,52 @@
   <meta name="description" content="Skills, achievements and future goals of Ziad Khaled.">
   <meta name="author" content="Ziad Khaled">
   <meta name="theme-color" content="#0D0D0D">
+  <meta property="og:title" content="ZIZO | More - Ziad Khaled">
+  <meta property="og:description" content="Skills, achievements and future goals of Ziad Khaled.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ziadx6.github.io/zizo/more.html">
+  <meta property="og:site_name" content="ZIZO | Ziad Khaled">
+  <meta property="og:image" content="https://ziadx6.github.io/zizo/assets/og-preview.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="936">
+  <meta property="og:image:height" content="1024">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ZIZO | More - Ziad Khaled">
+  <meta name="twitter:description" content="Skills, achievements and future goals of Ziad Khaled.">
+  <meta name="twitter:image" content="https://ziadx6.github.io/zizo/assets/og-preview.jpg">
   <title>ZIZO | More</title>
+  
+  <!-- Immediate Pre-Render Direction Init (Eliminates RTL/LTR FOUC and scrollbar edge jumping) -->
+  <script>
+    (function(){
+      try {
+        var l = localStorage.getItem('zizo_lang');
+        if (l === 'ar') {
+          document.documentElement.setAttribute('dir', 'rtl');
+          document.documentElement.setAttribute('lang', 'ar');
+        } else {
+          document.documentElement.setAttribute('dir', 'ltr');
+          document.documentElement.setAttribute('lang', 'en');
+        }
+      } catch(e) {}
+    })();
+  </script>
+
+  <!-- Security Headers & Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://api.web3forms.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+
+  <!-- Preconnect and Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&family=Cairo:wght@400;600;700;800&display=swap">
+  
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animations.css">
   <link rel="stylesheet" href="css/responsive.css">
@@ -97,7 +138,7 @@
       <div class="goals-list" id="goalsList"></div>
 
       <!-- Show Intro Again -->
-      <button class="show-intro-btn" onclick="showIntroAgain()">
+      <button class="show-intro-btn" id="showIntroBtn">
         <i class="fa-solid fa-rotate-right"></i> <span data-i18n="more.showIntro">Show Intro Again</span>
       </button>
     </div>
@@ -109,9 +150,10 @@
         <div class="logo">ZIZO</div>
         <p data-i18n="footer.designedBy">Designed &amp; Developed by Ziad Khaled</p>
         <div class="footer-social" style="margin-top:16px">
-          <a href="https://github.com/ziadx6" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://github.com/ziadx6" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/ziad-khalid-x6" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/Ziad.x6" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/ziad.x6" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           <a href="mailto:ziad.khalid.x6@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
         </div>
       </div>
@@ -138,42 +180,50 @@
     </div>
   </footer>
 
-  <script src="js/storage.js"></script>
-  <script src="js/translations.js"></script>
-  <script src="js/language.js"></script>
-  <script src="js/counters.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/security.js" defer></script>
+  <script src="js/storage.js" defer></script>
+  <script src="js/translations.js" defer></script>
+  <script src="js/language.js" defer></script>
+  <script src="js/counters.js" defer></script>
+  <script src="js/main.js" defer></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    function renderGoals() {
-      const lang = Storage.getLang();
-      if (!Translations || !Translations[lang]) return;
-      const goals = Translations[lang].more.goals || [];
-      const list = document.getElementById('goalsList');
-      if (!list) return;
-      list.innerHTML = goals.map((g, i) => `
-        <div class="goal-item glass-card reveal">
-          <div class="num">${i + 1}</div>
-          <p>${g}</p>
-        </div>`).join('');
-      initRevealOnScroll();
-    }
-    
-    async function initMorePage() {
-      try {
-        await loadTranslations();
-        renderGoals();
-        document.addEventListener('lang:changed', renderGoals);
-      } catch (err) {
-        console.error('Error initializing more page:', err);
+    document.addEventListener('DOMContentLoaded', async () => {
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // [SECURITY]: Attach safe click event listener without inline onclick
+      const showIntroBtn = document.getElementById('showIntroBtn');
+      if (showIntroBtn) {
+        showIntroBtn.addEventListener('click', () => {
+          if (typeof showIntroAgain === 'function') showIntroAgain();
+        });
       }
-    }
-    
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initMorePage);
-    } else {
-      initMorePage();
-    }
+      
+      /**
+       * [SECURITY]: Safe Goal List Renderer with Output Encoding
+       */
+      function renderGoals() {
+        const lang = (typeof Storage !== 'undefined' && Storage.getLang) ? Storage.getLang() : 'en';
+        if (!Translations || !Translations[lang]) return;
+        const goals = (Translations[lang].more && Translations[lang].more.goals) || [];
+        const list = document.getElementById('goalsList');
+        if (!list) return;
+
+        const esc = (typeof SecurityUtils !== 'undefined') ? SecurityUtils.escapeHTML : (s) => String(s || '');
+        list.innerHTML = goals.map((g, i) => `
+          <div class="goal-item glass-card reveal">
+            <div class="num">${i + 1}</div>
+            <p>${esc(g)}</p>
+          </div>`).join('');
+        if (typeof initRevealOnScroll === 'function') initRevealOnScroll();
+      }
+
+      if (typeof loadTranslations === 'function') {
+        await loadTranslations();
+      }
+      renderGoals();
+      document.addEventListener('lang:changed', renderGoals);
+    });
   </script>
 </body>
 </html>

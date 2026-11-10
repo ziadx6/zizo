@@ -63,15 +63,35 @@ function applyTranslations() {
     if (val != null) el.setAttribute('aria-label', val);
   });
 
-  document.title = `${data.intro.brand} | ${resolve(data, 'nav.home')}`;
+  const path = window.location.pathname.split('/').pop() || 'index.html';
+  let pageKey = 'nav.home';
+  if (path.includes('about')) pageKey = 'nav.about';
+  else if (path.includes('projects')) pageKey = 'nav.projects';
+  else if (path.includes('certificates')) pageKey = 'nav.certificates';
+  else if (path.includes('journey')) pageKey = 'nav.journey';
+  else if (path.includes('contact')) pageKey = 'nav.contact';
+  else if (path.includes('more')) pageKey = 'nav.more';
+
+  const brand = (data.intro && data.intro.brand) ? data.intro.brand : 'ZIZO';
+  const pageTitle = resolve(data, pageKey) || resolve(data, 'nav.home') || 'Home';
+  document.title = `${brand} | ${pageTitle}`;
 }
 
+/**
+ * [SECURITY]: Safe Object Key Resolver
+ * Guards against Prototype Pollution (__proto__, constructor, prototype)
+ */
 function resolve(obj, path) {
+  if (!obj || typeof obj !== 'object' || typeof path !== 'string') return undefined;
   const parts = path.split('.');
   let cur = obj;
   for (const p of parts) {
-    if (cur && typeof cur === 'object' && p in cur) cur = cur[p];
-    else return undefined;
+    if (p === '__proto__' || p === 'constructor' || p === 'prototype') return undefined;
+    if (cur && typeof cur === 'object' && Object.prototype.hasOwnProperty.call(cur, p)) {
+      cur = cur[p];
+    } else {
+      return undefined;
+    }
   }
   return cur;
 }

@@ -167,6 +167,7 @@
       "github": "GitHub",
       "linkedin": "LinkedIn",
       "facebook": "Facebook",
+      "instagram": "Instagram",
       "form": {
         "name": "Your Name",
         "emailLabel": "Your Email",
@@ -399,6 +400,7 @@
       "github": "جيت هاب",
       "linkedin": "لينكدإن",
       "facebook": "فيسبوك",
+      "instagram": "إنستغرام",
       "form": {
         "name": "اسمك",
         "emailLabel": "بريدك الإلكتروني",
