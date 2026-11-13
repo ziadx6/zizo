@@ -193,17 +193,21 @@ function renderCertificates(containerSelector = null, limit = null) {
       const rawIssuer = getTranslated(`certificates.items.${c.id}.issuer`);
       const rawCat = getTranslated(`certificates.${c.category}`);
       const rawDl = getTranslated('certificates.download');
+      const rawPrev = getTranslated('certificates.preview') !== 'certificates.preview'
+        ? getTranslated('certificates.preview')
+        : 'Preview';
 
       const title = esc(rawTitle);
       const issuer = esc(rawIssuer);
       const catLabel = esc(rawCat);
       const dl = esc(rawDl);
+      const prev = esc(rawPrev);
       const certId = escAttr(c.id);
       const imgPath = sanitizeUrl(`assets/certificates/${c.image}.jpg`);
 
       return `
         <article class="cert-card glass-card reveal visible">
-          <div class="cert-img">
+          <div class="cert-img" data-preview-id="${certId}" role="button" tabindex="0" aria-label="${prev} ${title}">
             <img src="${imgPath}" alt="${title}" width="400" height="300" loading="lazy" decoding="async" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';">
             <i class="fa-solid fa-certificate" style="display:none;"></i>
             <span class="cat-badge">${catLabel}</span>
@@ -211,9 +215,14 @@ function renderCertificates(containerSelector = null, limit = null) {
           <div class="cert-body">
             <h3>${title}</h3>
             <span class="cert-issuer">${issuer}</span>
-            <button class="cert-download" data-cert-id="${certId}" aria-label="${dl} ${title}">
-              <i class="fa-solid fa-download"></i> <span>${dl}</span>
-            </button>
+            <div class="cert-actions">
+              <button class="cert-preview" data-preview-id="${certId}" aria-label="${prev} ${title}">
+                <i class="fa-solid fa-expand"></i> <span>${prev}</span>
+              </button>
+              <button class="cert-download" data-cert-id="${certId}" aria-label="${dl} ${title}">
+                <i class="fa-solid fa-download"></i> <span>${dl}</span>
+              </button>
+            </div>
           </div>
         </article>`;
     }).join('');
@@ -222,16 +231,113 @@ function renderCertificates(containerSelector = null, limit = null) {
     if (!grid.dataset.certClickBound) {
       grid.dataset.certClickBound = 'true';
       grid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.cert-download');
-        if (btn) {
-          const id = btn.getAttribute('data-cert-id');
+        const dlBtn = e.target.closest('.cert-download');
+        if (dlBtn) {
+          const id = dlBtn.getAttribute('data-cert-id');
           if (id) downloadCert(id);
+          return;
+        }
+        const prevTrigger = e.target.closest('[data-preview-id]');
+        if (prevTrigger) {
+          const id = prevTrigger.getAttribute('data-preview-id');
+          if (id) openCertPreview(id);
+        }
+      });
+      grid.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          const prevTrigger = e.target.closest('.cert-img[data-preview-id]');
+          if (prevTrigger) {
+            e.preventDefault();
+            const id = prevTrigger.getAttribute('data-preview-id');
+            if (id) openCertPreview(id);
+          }
         }
       });
     }
   });
 
   revealNew();
+}
+
+/**
+ * [UI]: Certificate Image Lightbox Modal
+ */
+function openCertPreview(id) {
+  if (!id || typeof id !== 'string') return;
+  const data = CertsData || FallbackCerts;
+  const cert = data.find(item => item.id === id);
+  if (!cert) return;
+
+  const esc = (typeof SecurityUtils !== 'undefined') ? SecurityUtils.escapeHTML : (s) => String(s || '');
+  const escAttr = (typeof SecurityUtils !== 'undefined') ? SecurityUtils.escapeAttr : (s) => String(s || '');
+  const sanitizeUrl = (typeof SecurityUtils !== 'undefined') ? SecurityUtils.sanitizeUrl : (u) => u;
+
+  const title = esc(getTranslated(`certificates.items.${cert.id}.title`));
+  const issuer = esc(getTranslated(`certificates.items.${cert.id}.issuer`));
+  const dl = esc(getTranslated('certificates.download'));
+  const imgPath = sanitizeUrl(`assets/certificates/${cert.image}.jpg`);
+  const safeId = escAttr(cert.id);
+
+  let modal = document.getElementById('certLightbox');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'certLightbox';
+    modal.className = 'cert-lightbox';
+    modal.setAttribute('role', 'dialog');
+    modal.setAttribute('aria-modal', 'true');
+    document.body.appendChild(modal);
+
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal || e.target.closest('.cert-lightbox-close')) {
+        closeCertPreview();
+        return;
+      }
+      const dlBtn = e.target.closest('.cert-download');
+      if (dlBtn) {
+        const targetId = dlBtn.getAttribute('data-cert-id');
+        if (targetId) downloadCert(targetId);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeCertPreview();
+      }
+    });
+  }
+
+  modal.innerHTML = `
+    <div class="cert-lightbox-dialog">
+      <div class="cert-lightbox-header">
+        <div class="cert-lightbox-meta">
+          <h3>${title}</h3>
+          <span>${issuer}</span>
+        </div>
+        <button class="cert-lightbox-close" aria-label="Close preview">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="cert-lightbox-body">
+        <img src="${imgPath}" alt="${title}">
+      </div>
+      <div class="cert-lightbox-footer">
+        <button class="cert-download" data-cert-id="${safeId}">
+          <i class="fa-solid fa-download"></i> <span>${dl}</span>
+        </button>
+      </div>
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    modal.classList.add('active');
+  });
+}
+
+function closeCertPreview() {
+  const modal = document.getElementById('certLightbox');
+  if (modal) {
+    modal.classList.remove('active');
+  }
 }
 
 /**

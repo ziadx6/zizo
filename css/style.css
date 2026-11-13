@@ -1317,6 +1317,30 @@ main {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+
+.cert-img::before {
+  content: '\f00e';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 6, 15, 0.48);
+  color: #fff;
+  font-size: 1.6rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 0 0 18px var(--purple-bright);
+}
+
+.cert-card:hover .cert-img::before {
+  opacity: 1;
 }
 
 .cert-img img {
@@ -1374,20 +1398,40 @@ main {
   font-size: 0.88rem;
 }
 
-.cert-download {
+.cert-actions {
   margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.cert-preview,
+.cert-download {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px;
+  gap: 7px;
+  padding: 11px 10px;
   border-radius: var(--radius);
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   transition: all var(--transition);
+  cursor: pointer;
+}
+
+.cert-preview {
+  border-color: var(--border-glow);
+  color: var(--purple-bright);
+}
+
+.cert-preview:hover {
+  background: var(--purple-soft);
+  border-color: var(--purple-bright);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--purple-glow);
 }
 
 .cert-download:hover {
@@ -1395,6 +1439,127 @@ main {
   border-color: transparent;
   color: #fff;
   box-shadow: var(--shadow-neon);
+}
+
+/* Certificate Lightbox Modal */
+.cert-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(6, 4, 14, 0.86);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.cert-lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cert-lightbox-dialog {
+  position: relative;
+  max-width: min(880px, 95vw);
+  max-height: 90vh;
+  width: 100%;
+  background: rgba(16, 12, 30, 0.96);
+  border: 1px solid var(--border-glow);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 36px rgba(155, 107, 255, 0.28);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cert-lightbox.active .cert-lightbox-dialog {
+  transform: scale(1) translateY(0);
+}
+
+.cert-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cert-lightbox-meta h3 {
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.cert-lightbox-meta span {
+  font-size: 0.82rem;
+  color: var(--purple-bright);
+}
+
+.cert-lightbox-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  flex-shrink: 0;
+}
+
+.cert-lightbox-close:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+.cert-lightbox-body {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  background: #07050e;
+  max-height: calc(90vh - 135px);
+}
+
+.cert-lightbox-body img {
+  max-width: 100%;
+  max-height: calc(90vh - 165px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.cert-lightbox-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cert-lightbox-footer .cert-download {
+  padding: 10px 22px;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  border-color: transparent;
+  color: #fff;
 }
 
 .cert-empty {

@@ -60,6 +60,11 @@ textarea:focus-visible {
 
 /* RTL icon mirroring where needed */
 [dir="rtl"] .nav-links a::after { left: 50%; right: auto; }
+[dir="rtl"] .hero-cta i,
+[dir="rtl"] .section-head .view-all i {
+  transform: scaleX(-1);
+  display: inline-block;
+}
 
 /* Print friendliness */
 @media print {

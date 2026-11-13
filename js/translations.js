@@ -98,6 +98,7 @@ const TranslationsData = {
       "ai": "AI",
       "microsoft": "Microsoft Office",
       "download": "Download PDF",
+      "preview": "Preview",
       "noResults": "No certificates found",
       "items": {
         "cs50": {
@@ -155,6 +156,7 @@ const TranslationsData = {
           "desc": "I completed the Siemens Business Simulation Project, applying data management, analysis, and organizational skills using Microsoft Office tools."
         },
         "future": {
+          "year": "Future",
           "title": "Towards Professional Growth",
           "desc": "I aim to continue developing my programming and technology skills, building innovative projects, and pursuing continuous learning and professional growth."
         }
@@ -295,7 +297,7 @@ const TranslationsData = {
       "items": {
         "siemens": {
           "title": "مشروع سيمنز للأعمال",
-          "desc": "مشروع محاكاة أعمال شامل باستخدام أدوات مايكروسوفت أوفيس لتحليل الأعمال والتقاريم والعروض التقديمية."
+          "desc": "مشروع محاكاة أعمال شامل باستخدام أدوات مايكروسوفت أوفيس لتحليل الأعمال والتقارير والعروض التقديمية."
         },
         "bakery": {
           "title": "نظام إدارة مخبز",
@@ -315,7 +317,7 @@ const TranslationsData = {
         "word": "وورد",
         "powerpoint": "باوربوينت",
         "businessAnalysis": "تحليل الأعمال",
-        "businessSimulation": "أدارة الأعمال",
+        "businessSimulation": "إدارة الأعمال",
         "customerManagement": "إدارة العملاء",
         "salesManagement": "إدارة المبيعات",
         "ordersManagement": "إدارة الطلبات",
@@ -331,6 +333,7 @@ const TranslationsData = {
       "ai": "الذكاء الاصطناعي",
       "microsoft": "مايكروسوفت أوفيس",
       "download": "تحميل PDF",
+      "preview": "معاينة",
       "noResults": "لا توجد شهادات مطابقة",
       "items": {
         "cs50": {
@@ -339,7 +342,7 @@ const TranslationsData = {
         },
         "fundamentals": {
           "title": "دبلومة أساسيات علوم الحاسب",
-          "issuer": "دب أونلاين"
+          "issuer": "دبلومة أونلاين"
         },
         "genai": {
           "title": "مقدمة في استوديو الذكاء الاصطناعي التوليدي",
@@ -388,7 +391,8 @@ const TranslationsData = {
           "desc": "أنجزت مشروع محاكاة الأعمال الخاص بسيمنز، مطبقًا مهارات التحليل وإدارة البيانات والتنظيم باستخدام أدوات Microsoft Office."
         },
         "future": {
-          "title": "المستقبل",
+          "year": "المستقبل",
+          "title": "نحو النمو المهني",
           "desc": "أسعى إلى تطوير مهاراتي في البرمجة والتكنولوجيا، وبناء مشاريع مبتكرة ذات تأثير حقيقي، مع مواصلة التعلم والتطور المهني."
         }
       }
@@ -437,7 +441,7 @@ const TranslationsData = {
         "powerpoint": "باوربوينت",
         "access": "أكسس",
         "accounting": "المحاسبة",
-        "businessSim": "أدارة الأعمال"
+        "businessSim": "إدارة الأعمال"
       },
       "counters": {
         "certs": "شهادات مكتسبة",
